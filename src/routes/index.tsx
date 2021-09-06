@@ -42,21 +42,19 @@ function AuthRoute(props: any) {
 
 export function RouteSelector(props: any) {
     return (
-        <Provider store={reduxStore}>
-            <Router>
-                <Switch>
-                    <Route path="/login">
-                        <LoginPage />
-                    </Route>
-                    <AuthRoute path="/admin">
-                        <AdminPage />
-                    </AuthRoute>
-                    <Route path="/">
-                        <DefaultPage />
-                    </Route>
-                </Switch>
-            </Router>
-        </Provider>
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    <LoginPage />
+                </Route>
+                <AuthRoute path="/admin">
+                    <AdminPage />
+                </AuthRoute>
+                <Route path="/">
+                    <DefaultPage />
+                </Route>
+            </Switch>
+        </Router>
 
     );
 }
