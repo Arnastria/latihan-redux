@@ -1,0 +1,64 @@
+import { Provider, useStore } from "react-redux";
+import {
+    Switch,
+    Route,
+    Redirect,
+    BrowserRouter as Router
+} from "react-router-dom";
+import AdminPage from "../page/AdminPage";
+
+import { DefaultPage } from "../page/DefaultPage";
+import LoginPage from "../page/LoginPage";
+import { reduxStore } from "../redux";
+
+
+
+function AuthRoute(props: any) {
+    const { children } = props;
+    const store = useStore()
+    console.log(store.getState())
+    console.log(store.getState().auth.tokens)
+    const loggedIn = store.getState().auth.tokens != null;
+    //TODO check redux
+
+    if (!loggedIn) {
+        return (
+            <Route
+                render={(props) => (
+                    <Redirect
+                        to={{
+                            pathname: "/login",
+                        }}
+                    />
+                )}
+            />);
+    }
+
+    return (
+        <Route>
+            {children}
+        </Route>);
+}
+
+export function RouteSelector(props: any) {
+    return (
+        <Provider store={reduxStore}>
+            <Router>
+                <Switch>
+                    <Route path="/login">
+                        <LoginPage />
+                    </Route>
+                    <AuthRoute path="/admin">
+                        <AdminPage />
+                    </AuthRoute>
+                    <Route path="/">
+                        <DefaultPage />
+                    </Route>
+                </Switch>
+            </Router>
+        </Provider>
+
+    );
+}
+
+
