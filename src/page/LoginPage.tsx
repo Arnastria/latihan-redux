@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { loginUser, logoutUser } from '../redux/actions/auth';
 import { Rootstate } from '../redux/reducers';
-
+import styles from '../css/stylesheet.module.css';
 
 
 
@@ -52,9 +52,9 @@ function LoginPage() {
             {isError ? <div style={{ color: "red" }}>Wrong username or password</div> : <></>}
 
             <br />
-            <button onClick={() => { login_click({ username: username, password: password }) }}>Login</button>
+            <button className={styles.button_login} onClick={() => { login_click({ username: username, password: password }) }}>Login</button>
             <button onClick={() => { Check() }}>Check</button>
-            <button onClick={() => { logout() }}>Logout</button>
+            <button className={styles.button_logout} onClick={() => { logout() }}>Logout</button>
         </div>
     );
 }

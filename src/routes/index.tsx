@@ -6,6 +6,7 @@ import {
     BrowserRouter as Router
 } from "react-router-dom";
 import AdminPage from "../page/AdminPage";
+import { CardPage } from "../page/CardPage";
 
 import { DefaultPage } from "../page/DefaultPage";
 import LoginPage from "../page/LoginPage";
@@ -45,6 +46,9 @@ export function RouteSelector(props: any) {
             <Switch>
                 <Route path="/login">
                     <LoginPage />
+                </Route>
+                <Route path="/card">
+                    <CardPage />
                 </Route>
                 <AuthRoute path="/admin">
                     <AdminPage />
