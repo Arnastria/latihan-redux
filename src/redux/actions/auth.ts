@@ -1,19 +1,23 @@
-export const loginUser = (credentials: any, store: any) => {
+export const loginUser = (credentials: any, dispatch: any) => {
     console.log("login")
     const { username, password } = credentials;
     console.log("username in actions : " + username);
-    console.log("username in actions : " + password);
+    console.log("password in actions : " + password);
 
-    // dispatch();
-    store.dispatch({
-        type: 'LOGGED_IN',
-    })
+    dispatch({
+        type: 'LOGGED_IN'
+    });
+    // store.dispatch({
+    //     type: 'LOGGED_IN',
+    // })
 }
 
-export const logoutUser = (store: any) => {
+export const logoutUser = (dispatch: any) => {
     console.log("logout")
-    // dispatch();
-    store.dispatch({
+    dispatch({
         type: 'LOGGED_OUT'
-    })
+    });
+    // store.dispatch({
+    //     type: 'LOGGED_OUT'
+    // })
 }

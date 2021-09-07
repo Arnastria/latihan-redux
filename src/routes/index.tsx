@@ -1,4 +1,4 @@
-import { Provider, useStore } from "react-redux";
+import { useStore } from "react-redux";
 import {
     Switch,
     Route,
@@ -9,7 +9,6 @@ import AdminPage from "../page/AdminPage";
 
 import { DefaultPage } from "../page/DefaultPage";
 import LoginPage from "../page/LoginPage";
-import { reduxStore } from "../redux";
 
 
 
