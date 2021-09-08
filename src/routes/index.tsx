@@ -6,8 +6,7 @@ import {
     BrowserRouter as Router
 } from "react-router-dom";
 import AdminPage from "../page/AdminPage";
-import { CardPage } from "../page/CardPage";
-
+import { PromoPage } from "../page/PromoPage";
 import { DefaultPage } from "../page/DefaultPage";
 import LoginPage from "../page/LoginPage";
 
@@ -47,8 +46,8 @@ export function RouteSelector(props: any) {
                 <Route path="/login">
                     <LoginPage />
                 </Route>
-                <Route path="/card">
-                    <CardPage />
+                <Route path="/promo">
+                    <PromoPage />
                 </Route>
                 <AuthRoute path="/admin">
                     <AdminPage />
