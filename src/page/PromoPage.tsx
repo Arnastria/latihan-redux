@@ -43,6 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+function CardRowLoading() {
+    return (
+        <Grid item xs={12} sm={6} md={4} xl={3}>
+            <PromocardLoading />
+        </Grid>);
+}
+
 function PromoPage() {
     const classes = useStyles();
     const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +89,7 @@ function PromoPage() {
 
     const fetchData = (start: any) => {
         console.log("fetchData..")
-        if (items.length >= 30) {
+        if (items.length >= 50) {
             setHasMore(false);
             console.log("max list reached");
             return;
@@ -110,11 +117,20 @@ function PromoPage() {
         }, 1000);
     }
 
+    const searchFunction = (event: KeyboardEvent, query: String) => {
+        if (event.key === 'Enter') {
+            console.log(query)
+        }
+        // if (query.length > 3) {
+        //     console.log(query);
+        // }
+    }
+
     console.log(items.length)
     return (
         <div>
             <div style={{ border: '1px solid #eeecea' }}>
-                <PoininAppBar />
+                <PoininAppBar searchFunction={searchFunction} />
             </div>
 
             <Grid container justifyContent="center" alignItems="center" spacing={2}>
@@ -123,18 +139,10 @@ function PromoPage() {
                     <div >
                         {isLoading ?
                             <Grid style={{ overflow: 'hidden' }} container justifyContent="center" alignItems="center" spacing={2}>
-                                <Grid item spacing={0} xs={3}>
-                                    <PromocardLoading />
-                                </Grid>
-                                <Grid item spacing={0} xs={3}>
-                                    <PromocardLoading />
-                                </Grid>
-                                <Grid item spacing={0} xs={3}>
-                                    <PromocardLoading />
-                                </Grid>
-                                <Grid item spacing={0} xs={3}>
-                                    <PromocardLoading />
-                                </Grid>
+                                <CardRowLoading />
+                                <CardRowLoading />
+                                <CardRowLoading />
+                                <CardRowLoading />
                             </Grid>
                             :
                             <InfiniteScroll
@@ -143,18 +151,10 @@ function PromoPage() {
                                 hasMore={hasMore}
                                 loader={
                                     <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%' }} container justifyContent="center" alignItems="center">
-                                        <Grid item spacing={0} xs={3}>
-                                            <PromocardLoading />
-                                        </Grid>
-                                        <Grid item spacing={0} xs={3}>
-                                            <PromocardLoading />
-                                        </Grid>
-                                        <Grid item spacing={0} xs={3}>
-                                            <PromocardLoading />
-                                        </Grid>
-                                        <Grid item spacing={0} xs={3}>
-                                            <PromocardLoading />
-                                        </Grid>
+                                        <CardRowLoading />
+                                        <CardRowLoading />
+                                        <CardRowLoading />
+                                        <CardRowLoading />
                                     </Grid>
                                 }
                                 endMessage={
@@ -169,7 +169,7 @@ function PromoPage() {
                                 <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%' }} container justifyContent="center" alignItems="center">
                                     {items.map((i, index) => {
                                         return (
-                                            <Grid item spacing={0} xs={3}>
+                                            <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
                                                 <Promocard
                                                     isHotPromo={index % 2 == 0}
                                                     title={"Product ke" + index}

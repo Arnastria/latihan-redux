@@ -2,8 +2,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { Input, InputBase } from '@material-ui/core';
+import { useState } from 'react';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PoininAppBar(props: any) {
     const { searchFunction } = props;
+    const [searchValue, setSearchValue] = useState<String>("");
     const classes = useStyles();
     return (
         <div className={classes.grow}>
@@ -75,8 +77,10 @@ export default function PoininAppBar(props: any) {
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
                             inputProps={{ 'aria-label': 'search' }}
-                            onChange={searchFunction}
+                            onKeyDown={(event) => searchFunction(event, searchValue)}
                         />
                     </div>
                     <div className={classes.Slogan}>

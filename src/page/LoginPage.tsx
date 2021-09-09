@@ -1,78 +1,3 @@
-// import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router';
-// import { loginUser, logoutUser } from '../redux/actions/auth';
-// import { Rootstate } from '../redux/reducers';
-// import styles from '../css/stylesheet.module.css';
-// import { Card, Grid } from '@material-ui/core';
-
-
-
-
-// function LoginPage() {
-//     const [username, setUsername] = useState("");
-//     const [password, setPassword] = useState("");
-//     const [isError, setIsError] = useState(false);
-//     // const store = useStore();
-//     const dispatch = useDispatch();
-//     const history = useHistory();
-//     const selector = useSelector((state: Rootstate) => state.auth);
-
-//     const login_click = (props: any) => {
-//         const { username, password } = props;
-//         console.log(username);
-//         console.log(password);
-//         if (username === "admin" && password === "admin123") {
-//             setIsError(false);
-//         } else {
-//             setIsError(true);
-//             return;
-//         }
-//         console.log("==")
-//         loginUser(props, dispatch);
-
-//         history.push("/admin")
-//     }
-
-//     const Check = () => {
-//         console.log(selector)
-//     }
-
-//     const logout = () => {
-//         logoutUser(dispatch)
-//     }
-//     return (
-//         <div style={{ textAlign: "center" }}>
-//             <Grid container justifyContent="center" alignItems="center" >
-//                 <Grid item>
-//                     <Card style={{ width: 200 }}>
-//                         <h2>
-//                             Login Page
-//                         </h2>
-//                     </Card>
-//                 </Grid>
-//             </Grid>
-
-//             <h2>
-//                 Login Page
-//             </h2>
-//             <input value={username} onChange={(e) => setUsername(e.target.value)}></input>
-//             <br />
-//             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password"></input>
-//             <br />
-//             {isError ? <div style={{ color: "red" }}>Wrong username or password</div> : <></>}
-
-//             <br />
-//             <button className={styles.button_login} onClick={() => { login_click({ username: username, password: password }) }}>Login</button>
-//             <button onClick={() => { Check() }}>Check</button>
-//             <button className={styles.button_logout} onClick={() => { logout() }}>Logout</button>
-//         </div>
-//     );
-// }
-
-// export default LoginPage;
-
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -126,7 +51,7 @@ export default function LoginPage() {
         console.log("==")
         loginUser(props, dispatch);
 
-        history.push("/admin")
+        history.replace("/promo")
     }
 
     const Check = () => {
@@ -139,7 +64,7 @@ export default function LoginPage() {
 
     return (
         <Grid container justifyContent="flex-end" alignItems="center" className={classes.root} >
-            <Grid item xs={12} sm={5} md={3} component={Paper} elevation={6} square style={{ marginRight: '10%' }}>
+            <Grid item xs={12} sm={12} md={3} component={Paper} elevation={6} square style={{ marginRight: '10%', marginLeft: '10%' }}>
                 <div className={classes.paper}>
                     <img style={{ maxWidth: 150 }} src="https://www.poinin.com/_next/image?url=%2Fassets%2Ficon%2Fpoinin_icon.png&w=3840&q=75" />
                     <TextField
@@ -172,7 +97,7 @@ export default function LoginPage() {
                     >
                         Sign In
                     </Button>
-                    <Button
+                    {/* <Button
                         fullWidth
                         variant="outlined"
                         onClick={() => { Check() }}
@@ -186,7 +111,7 @@ export default function LoginPage() {
                         style={{ backgroundColor: 'red', color: 'white' }}
                     >
                         Sign Out
-                    </Button>
+                    </Button> */}
                     {isError ? <div style={{ color: "red" }}>Wrong username or password</div> : <></>}
                     <Grid container>
                         <Grid item xs>

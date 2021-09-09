@@ -1,0 +1,8 @@
+
+
+const DummyPromoData = [
+    {
+    }
+];
+
+export { DummyPromoData }
