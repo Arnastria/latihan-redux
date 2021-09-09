@@ -1,12 +1,13 @@
 interface PromoData {
-    id: String,
-    MerchantLogo: String,
-    Background: String,
-    TitleRow1: String,
-    TitleRow2: String,
-    Color: String,
+    id: string,
+    MerchantLogo: string,
+    Background: string,
+    TitleRow1: string,
+    TitleRow2: string,
+    Color: string,
     ShowHotPromo: Boolean,
-    CardLogo: String,
+    CardLogo: string,
+    Day: string,
 };
 
 export type { PromoData };

@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
+import { PromoData } from '../data/PromoData';
 
 const useStyles = makeStyles({
     root: {
@@ -34,23 +35,22 @@ function PromocardLoading(props: any) {
         </Grid>);
 }
 
-function Promocard(props: any) {
-    const { name, isHotPromo, title, subtitle, days, image } = props;
+const Promocard = (props: any) => {
+    const { promoData } = props;
     const classes = useStyles();
     return (
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
             <Grid item>
                 <div style={{ marginTop: "24px" }}>
-                    <img style={{ width: 75 }} src="https://poininngcdn.azureedge.net/smartpromo/Merchant/PromoLogo/253f7e7c-8f8f-4a00-8269-8f9fb3d06c6a.png" />
-                    {/* <Skeleton width={75} height={25} /> */}
+                    <img style={{ width: 75 }} src={promoData.MerchantLogo} />
                     <Card elevation={4} raised style={{ position: 'relative', display: 'relative', height: "100%", width: 150, borderRadius: 10 }}>
                         <Grid container direction="column">
                             <Grid item  >
                                 <div>
-                                    {isHotPromo ?
+                                    {promoData.ShowHotPromo ?
                                         <>
                                             <div style={{ height: 25 }}>
-                                                <div style={{ textAlign: 'center', fontSize: 10, backgroundColor: 'yellowgreen', color: 'white', maxWidth: '50%', borderBottomRightRadius: '10px' }}>
+                                                <div style={{ textAlign: 'center', fontSize: 10, backgroundColor: promoData.Color, color: 'white', maxWidth: '50%', borderBottomRightRadius: '10px' }}>
                                                     Hot Promo
                                                 </div>
                                             </div>
@@ -59,17 +59,17 @@ function Promocard(props: any) {
                                         <></>
                                     }
                                     {
-                                        isHotPromo ?
-                                            <Grid container direction="column" style={{ height: 35, fontSize: 13, color: 'yellowgreen', margin: 6 }}>
-                                                <Grid item>{title}</Grid>
-                                                <Grid item style={{ fontWeight: 'bold' }}>{subtitle}</Grid>
+                                        promoData.ShowHotPromo ?
+                                            <Grid container direction="column" style={{ height: 35, fontSize: 13, color: promoData.Color, margin: 6 }}>
+                                                <Grid item>{promoData.TitleRow1}</Grid>
+                                                <Grid item style={{ fontWeight: 'bold' }}>{promoData.TitleRow2}</Grid>
                                             </Grid>
                                             :
 
                                             <Grid container direction="column" justifyContent="center"
-                                                alignItems="flex-start" style={{ height: 60, fontSize: 14, color: 'yellowgreen', margin: 6 }}>
-                                                <Grid item>{title}</Grid>
-                                                <Grid item style={{ fontWeight: 'bold' }}>{subtitle}</Grid>
+                                                alignItems="flex-start" style={{ height: 60, fontSize: 14, color: promoData.Color, margin: 6 }}>
+                                                <Grid item>{promoData.TitleRow1}</Grid>
+                                                <Grid item style={{ fontWeight: 'bold' }}>{promoData.TitleRow2}</Grid>
                                             </Grid>
                                     }
 
@@ -77,21 +77,24 @@ function Promocard(props: any) {
                             </Grid>
                             <Grid item >
 
-                                <img style={{ display: 'flex', maxHeight: 150 }} src={image} />
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: '0px',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                                    width: '100%'
-                                }}>
-                                    <img style={{ width: 75, padding: 2 }} src="https://poininngcdn.azureedge.net/smartpromo/Merchant/PromoLogo/cbc09b0d-2907-4a0f-aa15-9735d67b5736.png" />
-                                </div>
-                                {/* <Skeleton style={{ margin: 0 }} height={100} /> */}
+                                <img style={{ display: 'flex', maxHeight: 150 }} src={promoData.Background} />
+                                {promoData.CardLogo != '' ?
+                                    <div style={{
+                                        position: 'absolute',
+                                        bottom: '0px',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                        width: '100%'
+                                    }}>
+                                        <img style={{ width: 75, padding: 2 }} src={promoData.CardLogo} />
+                                    </div>
+                                    :
+                                    <></>
+                                }
                             </Grid>
                         </Grid>
                     </Card>
-                    <div style={{ fontSize: 13 }}>
-                        {days} Days Left
+                    <div style={{ fontSize: 12 }}>
+                        {promoData.Day}
                     </div>
                 </div>
             </Grid>

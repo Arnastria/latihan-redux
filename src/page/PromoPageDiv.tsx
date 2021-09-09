@@ -50,7 +50,7 @@ function CardRowLoading() {
         </Grid>);
 }
 
-function PromoPage() {
+function PromoPageDiv() {
     const dummyPromoData = DummyPromoDataLong;
     const classes = useStyles();
     const [isLoading, setIsLoading] = useState(true);
@@ -108,7 +108,7 @@ function PromoPage() {
                 <Grid item>
                     <div >
                         {isLoading ?
-                            <Grid style={{ overflow: 'hidden' }} container justifyContent="center" alignItems="center" spacing={2}>
+                            <Grid container style={{ overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} spacing={2}>
                                 <CardRowLoading />
                                 <CardRowLoading />
                                 <CardRowLoading />
@@ -120,12 +120,12 @@ function PromoPage() {
                                 next={() => { fetchData(promoItem.length) }}
                                 hasMore={hasMore}
                                 loader={
-                                    <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%' }} container justifyContent="center" alignItems="center">
+                                    <div style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
                                         <CardRowLoading />
                                         <CardRowLoading />
                                         <CardRowLoading />
                                         <CardRowLoading />
-                                    </Grid>
+                                    </div>
                                 }
                                 endMessage={
                                     <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', color: '#6c757d' }} container justifyContent="center" alignItems="center">
@@ -136,16 +136,15 @@ function PromoPage() {
 
                                 }
                             >
-                                <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%' }} container justifyContent="center" alignItems="center">
+                                <div style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
                                     {promoItem.map((i, index) => {
                                         return (
-                                            <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
+                                            <div style={{ margin: 20 }} key={index}>
                                                 <Promocard promoData={i} />
-                                            </Grid>
+                                            </div>
                                         );
                                     })}
-
-                                </Grid>
+                                </div>
                             </InfiniteScroll>
                         }
 
@@ -158,4 +157,4 @@ function PromoPage() {
     );
 }
 
-export { PromoPage };
+export { PromoPageDiv };

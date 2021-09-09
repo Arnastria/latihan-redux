@@ -9,6 +9,7 @@ import AdminPage from "../page/AdminPage";
 import { PromoPage } from "../page/PromoPage";
 import { DefaultPage } from "../page/DefaultPage";
 import LoginPage from "../page/LoginPage";
+import { PromoPageDiv } from "../page/PromoPageDiv";
 
 
 
@@ -48,6 +49,9 @@ export function RouteSelector(props: any) {
                 </Route>
                 <Route path="/promo">
                     <PromoPage />
+                </Route>
+                <Route path="/promodiv">
+                    <PromoPageDiv />
                 </Route>
                 <AuthRoute path="/admin">
                     <AdminPage />
