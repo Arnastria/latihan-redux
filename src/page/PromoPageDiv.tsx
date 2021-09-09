@@ -55,13 +55,6 @@ function PromoPageDiv() {
     const classes = useStyles();
     const [isLoading, setIsLoading] = useState(true);
     const [hasMore, setHasMore] = useState(true);
-    const [items, setItems] = useState<Array<{
-        isHotPromo: boolean,
-        title: string,
-        subtitle: string,
-        days: string,
-        image: string
-    }>>([]);
     const [promoItem, setPromoItem] = useState<Array<PromoData>>([]);
 
     useEffect(() => {
@@ -94,19 +87,38 @@ function PromoPageDiv() {
 
     const searchFunction = (event: KeyboardEvent, query: String) => {
         if (event.key === 'Enter') {
-            console.log(query)
+            if (query === '') {
+                console.log("empty query")
+                setIsLoading(true);
+                setTimeout(() => {
+                    setHasMore(true);
+                    const tmpArr = dummyPromoData.slice(0, 10);
+                    setPromoItem(tmpArr);
+                    setIsLoading(false);
+                }, 1000);
+            }
+            if (query.length > 3) {
+                console.log(query)
+                setIsLoading(true);
+                setTimeout(() => {
+                    const tmpArr = dummyPromoData.slice(0, 4);
+                    setPromoItem(tmpArr);
+                    setHasMore(false);
+                    setIsLoading(false);
+                }, 1000);
+            }
         }
     }
 
     return (
-        <div>
+        <div >
             <div style={{ border: '1px solid #eeecea' }}>
                 <PoininAppBar searchFunction={searchFunction} />
             </div>
 
             <Grid container justifyContent="center" alignItems="center" spacing={2}>
                 <Grid item>
-                    <div >
+                    <div>
                         {isLoading ?
                             <Grid container style={{ overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} spacing={2}>
                                 <CardRowLoading />
