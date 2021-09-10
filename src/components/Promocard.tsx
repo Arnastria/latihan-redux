@@ -10,29 +10,27 @@ const useStyles = makeStyles({
     },
 });
 
+
 function PromocardLoading(props: any) {
     return (
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
             <Grid item>
-                <div>
-                    <Skeleton width={75} height={25} />
-                    <Card elevation={4} raised style={{ width: 150, borderRadius: 10 }}>
-                        <Grid container direction="column">
-                            <Grid item  >
-                                <Skeleton width={'100%'} height={25} />
-                                <Skeleton width={'100%'} height={25} />
-                            </Grid>
-                            <Grid item >
-                                <div style={{ margin: 0, display: 'flex' }}>
-                                    <Skeleton width={'100%'} height={150} />
-                                </div>
-                            </Grid>
-                        </Grid>
+                <div style={{ marginTop: "24px" }}>
+                    <div style={{ height: 30 }}>
+                        <Skeleton variant="rect" style={{ borderRadius: '5px', width: '50%', display: 'flex' }} />
+                    </div>
+
+                    <Card elevation={4} raised style={{ position: 'relative', display: 'relative', height: "100%", width: 150, borderRadius: 10 }}>
+                        <div style={{ height: 60, margin: 6 }} />
+                        <Skeleton variant="rect" style={{ height: '100%', width: '100%', display: 'flex', minHeight: 150 }} />
                     </Card>
-                    <Skeleton width={75} height={25} />
+                    <div style={{ fontSize: 12 }}>
+                        <   Skeleton width={75} height={25} />
+                    </div>
                 </div>
             </Grid>
-        </Grid>);
+        </Grid>
+    );
 }
 
 const Promocard = (props: any) => {
@@ -42,7 +40,10 @@ const Promocard = (props: any) => {
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
             <Grid item>
                 <div style={{ marginTop: "24px" }}>
-                    <img style={{ width: 75 }} src={promoData.MerchantLogo} />
+                    <div style={{ height: 30 }}>
+                        <img style={{ width: 75 }} src={promoData.MerchantLogo} />
+                    </div>
+
                     <Card elevation={4} raised style={{ position: 'relative', display: 'relative', height: "100%", width: 150, borderRadius: 10 }}>
                         <Grid container direction="column">
                             <Grid item  >

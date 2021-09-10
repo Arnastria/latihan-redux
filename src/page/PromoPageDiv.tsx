@@ -101,7 +101,7 @@ function PromoPageDiv() {
                 console.log(query)
                 setIsLoading(true);
                 setTimeout(() => {
-                    const tmpArr = dummyPromoData.slice(0, 4);
+                    const tmpArr = dummyPromoData.slice(0, 6);
                     setPromoItem(tmpArr);
                     setHasMore(false);
                     setIsLoading(false);
@@ -148,10 +148,10 @@ function PromoPageDiv() {
 
                                 }
                             >
-                                <div style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
+                                <div style={{ overflow: 'hidden', padding: '0% 20% 0% 20%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
                                     {promoItem.map((i, index) => {
                                         return (
-                                            <div style={{ margin: 20 }} key={index}>
+                                            <div style={{ margin: 10 }} key={index}>
                                                 <Promocard promoData={i} />
                                             </div>
                                         );

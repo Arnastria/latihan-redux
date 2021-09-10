@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { loginUser, logoutUser } from '../redux/actions/auth';
 import { Rootstate } from '../redux/reducers';
-import styles from '../css/stylesheet.module.css';
-import { Card, Grid, Paper, Link, TextField, Button } from '@material-ui/core';
+import { Grid, Paper, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -19,11 +18,26 @@ const useStyles = makeStyles((theme) => ({
 
         backgroundPosition: 'left bottom',
     },
+    logo: {
+        maxWidth: 150
+    },
+    wrapperPapper: {
+        marginRight: '10%',
+        marginLeft: '10%'
+    },
     paper: {
         margin: 12,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+    buttonLogin: {
+        backgroundColor: '#ff9900',
+        color: 'white',
+    },
+    error: {
+        color: "red",
+        height: 20,
     },
 }));
 
@@ -32,7 +46,6 @@ export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isError, setIsError] = useState(false);
-    // const store = useStore();
     const dispatch = useDispatch();
     const history = useHistory();
     const selector = useSelector((state: Rootstate) => state.auth);
@@ -64,9 +77,9 @@ export default function LoginPage() {
 
     return (
         <Grid container justifyContent="flex-end" alignItems="center" className={classes.root} >
-            <Grid item xs={12} sm={12} md={3} component={Paper} elevation={6} square style={{ marginRight: '10%', marginLeft: '10%' }}>
+            <Grid item className={classes.wrapperPapper} xs={12} sm={12} md={3} component={Paper} elevation={6} square >
                 <div className={classes.paper}>
-                    <img style={{ maxWidth: 150 }} src="https://www.poinin.com/_next/image?url=%2Fassets%2Ficon%2Fpoinin_icon.png&w=3840&q=75" />
+                    <img className={classes.logo} src="https://www.poinin.com/_next/image?url=%2Fassets%2Ficon%2Fpoinin_icon.png&w=3840&q=75" />
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -90,41 +103,14 @@ export default function LoginPage() {
                         value={password} onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button
+                        className={classes.buttonLogin}
                         fullWidth
                         variant="contained"
                         onClick={() => { login_click({ username: username, password: password }) }}
-                        style={{ backgroundColor: '#ff9900', color: 'white' }}
                     >
                         Sign In
                     </Button>
-                    {/* <Button
-                        fullWidth
-                        variant="outlined"
-                        onClick={() => { Check() }}
-                    >
-                        Check-in
-                    </Button>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => { logout() }}
-                        style={{ backgroundColor: 'red', color: 'white' }}
-                    >
-                        Sign Out
-                    </Button> */}
-                    {isError ? <div style={{ color: "red" }}>Wrong username or password</div> : <></>}
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                    {isError ? <div className={classes.error}>Wrong username or password</div> : <div className={classes.error}></div>}
                 </div>
             </Grid>
         </Grid>
