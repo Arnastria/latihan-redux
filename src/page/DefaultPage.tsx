@@ -11,7 +11,7 @@ function DefaultPage() {
                 <Promocard promoData={i[0]} />
             </Grid>
             <Grid item>
-                <Promocard promoData={i[1]} />
+                <Promocard promoData={i[2]} />
             </Grid>
             <Grid item>
                 <PromocardLoading />

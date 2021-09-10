@@ -1,47 +1,26 @@
 import { makeStyles } from '@material-ui/styles';
-import { Grid, createStyles, Theme } from '@material-ui/core';
+import { Grid, } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-// import { Promocard } from '../components/Promocard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PoininAppBar from '../components/Appbar';
 import { Promocard, PromocardLoading } from '../components/Promocard';
 import { DummyPromoDataLong } from '../data/DummyList';
 import { PromoData } from '../data/PromoData';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        grow: {
-            flexGrow: 1,
-        },
-        title: {
-            display: 'none',
-        },
-        search: {
-            position: 'relative',
-            marginRight: 2,
-            marginLeft: 0,
-            width: '100%',
-        },
-        searchIcon: {
-            padding: 2,
-            height: '100%',
-            position: 'absolute',
-            pointerEvents: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        inputRoot: {
-            color: 'inherit',
-        },
-        inputInput: {
-            padding: 1,
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${4}px)`,
-            width: '100%',
-        },
-    }),
-);
+const useStyles = makeStyles({
+    borderAppBar: {
+        border: '1px solid #eeecea'
+    },
+    gridContainerLoaderPromoNoPadding: {
+        overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
+    },
+    gridContainerLoaderPromo: {
+        overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
+    },
+    gridEndMessage: {
+        overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
+    }
+});
 
 function CardRowLoading() {
     return (
@@ -66,8 +45,6 @@ function PromoPageDiv() {
         }, 2000);
     }, [])
 
-
-
     const fetchData = (start: any) => {
         console.log("fetchData..")
         console.log(promoItem.length + "/" + dummyPromoData.length);
@@ -82,8 +59,6 @@ function PromoPageDiv() {
             setPromoItem((currentItems) => currentItems.concat(tmpArr));
         }, 1000);
     }
-
-
 
     const searchFunction = (event: KeyboardEvent, query: String) => {
         if (event.key === 'Enter') {
@@ -112,7 +87,7 @@ function PromoPageDiv() {
 
     return (
         <div >
-            <div style={{ border: '1px solid #eeecea' }}>
+            <div className={classes.borderAppBar}>
                 <PoininAppBar searchFunction={searchFunction} />
             </div>
 
@@ -120,7 +95,7 @@ function PromoPageDiv() {
                 <Grid item>
                     <div>
                         {isLoading ?
-                            <Grid container style={{ overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} spacing={2}>
+                            <Grid container className={classes.gridContainerLoaderPromoNoPadding}>
                                 <CardRowLoading />
                                 <CardRowLoading />
                                 <CardRowLoading />
@@ -132,7 +107,7 @@ function PromoPageDiv() {
                                 next={() => { fetchData(promoItem.length) }}
                                 hasMore={hasMore}
                                 loader={
-                                    <div style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
+                                    <div className={classes.gridContainerLoaderPromo} >
                                         <CardRowLoading />
                                         <CardRowLoading />
                                         <CardRowLoading />
@@ -140,15 +115,14 @@ function PromoPageDiv() {
                                     </div>
                                 }
                                 endMessage={
-                                    <Grid style={{ overflow: 'hidden', padding: '0% 25% 0% 25%', color: '#6c757d' }} container justifyContent="center" alignItems="center">
+                                    <Grid className={classes.gridEndMessage} container justifyContent="center" alignItems="center">
                                         <Grid item>
                                             <p>There is no other available product</p>
                                         </Grid>
                                     </Grid>
-
                                 }
                             >
-                                <div style={{ overflow: 'hidden', padding: '0% 20% 0% 20%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
+                                <div className={classes.gridContainerLoaderPromo} >
                                     {promoItem.map((i, index) => {
                                         return (
                                             <div style={{ margin: 10 }} key={index}>
@@ -159,11 +133,8 @@ function PromoPageDiv() {
                                 </div>
                             </InfiniteScroll>
                         }
-
                     </div>
-
                 </Grid>
-
             </Grid>
         </div>
     );
