@@ -3,8 +3,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
-import { Input, InputBase } from '@material-ui/core';
+import { Button, Input, InputBase } from '@material-ui/core';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Rootstate } from '../redux/reducers';
+import { logoutUser } from '../redux/actions/auth';
+import { Redirect } from 'react-router';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
         Slogan: {
             color: '#6c757d',
             fontSize: 14,
+            margin: "0 8px 0 0"
         },
         search: {
             position: 'relative',
@@ -55,13 +60,25 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: '20ch',
             },
         },
+        buttonLogin: {
+            backgroundColor: '#ff9900',
+            color: 'white',
+        },
     }),
 );
 
 export default function PoininAppBar(props: any) {
     const { searchFunction } = props;
     const [searchValue, setSearchValue] = useState<String>("");
+    const dispatch = useDispatch();
+    const selector = useSelector((state: Rootstate) => state.auth);
+
     const classes = useStyles();
+    console.log(selector)
+    const logout = () => {
+        logoutUser(dispatch);
+        window.location.reload();
+    }
     return (
         <div className={classes.grow}>
             <AppBar elevation={0} position="static" className={classes.Appbar}>
@@ -85,6 +102,15 @@ export default function PoininAppBar(props: any) {
                     </div>
                     <div className={classes.Slogan}>
                         Cari Promo? di Poinin Aja
+                    </div>
+                    <div>
+                        {selector.tokens != null ?
+                            <Button onClick={logout} variant="contained" className={classes.buttonLogin}>
+                                Logout
+                            </Button>
+                            :
+                            <></>
+                        }
                     </div>
                 </Toolbar>
             </AppBar>

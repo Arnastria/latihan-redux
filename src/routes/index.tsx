@@ -50,9 +50,9 @@ export function RouteSelector(props: any) {
                 <Route path="/promo">
                     <PromoPage />
                 </Route>
-                <Route path="/promodiv">
+                <AuthRoute path="/promodiv">
                     <PromoPageDiv />
-                </Route>
+                </AuthRoute>
                 <AuthRoute path="/admin">
                     <AdminPage />
                 </AuthRoute>

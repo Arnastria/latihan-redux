@@ -64,7 +64,7 @@ export default function LoginPage() {
         console.log("==")
         loginUser(props, dispatch);
 
-        history.replace("/promo")
+        history.replace("/promodiv")
     }
 
     const Check = () => {
@@ -73,6 +73,12 @@ export default function LoginPage() {
 
     const logout = () => {
         logoutUser(dispatch)
+    }
+
+    const searchFunction = (event: any) => {
+        if (event.key === 'Enter') {
+            login_click({ username: username, password: password });
+        }
     }
 
     return (
@@ -100,6 +106,7 @@ export default function LoginPage() {
                         label="Password"
                         type="password"
                         id="password"
+                        onKeyDown={(event) => searchFunction(event)}
                         value={password} onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button

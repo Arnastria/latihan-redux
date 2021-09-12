@@ -24,9 +24,9 @@ const useStyles = makeStyles({
 
 function CardRowLoading() {
     return (
-        <Grid item xs={12} sm={6} md={4} xl={3}>
+        <div style={{ margin: 5 }}>
             <PromocardLoading />
-        </Grid>);
+        </div>);
 }
 
 function PromoPageDiv() {
@@ -95,12 +95,12 @@ function PromoPageDiv() {
                 <Grid item>
                     <div>
                         {isLoading ?
-                            <Grid container className={classes.gridContainerLoaderPromoNoPadding}>
+                            <div className={classes.gridContainerLoaderPromoNoPadding}>
                                 <CardRowLoading />
                                 <CardRowLoading />
                                 <CardRowLoading />
                                 <CardRowLoading />
-                            </Grid>
+                            </div>
                             :
                             <InfiniteScroll
                                 dataLength={promoItem.length}
@@ -115,11 +115,11 @@ function PromoPageDiv() {
                                     </div>
                                 }
                                 endMessage={
-                                    <Grid className={classes.gridEndMessage} container justifyContent="center" alignItems="center">
+                                    <div className={classes.gridEndMessage}>
                                         <Grid item>
                                             <p>There is no other available product</p>
                                         </Grid>
-                                    </Grid>
+                                    </div>
                                 }
                             >
                                 <div className={classes.gridContainerLoaderPromo} >
