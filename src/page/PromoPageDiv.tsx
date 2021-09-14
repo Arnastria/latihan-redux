@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
     },
     gridContainerLoaderPromo: {
-        overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
+        overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '50%'
     },
     gridEndMessage: {
         overflow: 'hidden', padding: '0% 25% 0% 25%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
@@ -96,33 +96,38 @@ function PromoPageDiv() {
                     <div>
                         {isLoading ?
                             <div className={classes.gridContainerLoaderPromoNoPadding}>
-                                <CardRowLoading />
-                                <CardRowLoading />
-                                <CardRowLoading />
-                                <CardRowLoading />
+                                <>
+                                    {[0, 0, 0, 0].map((i, index) => {
+                                        return (
+                                            <div style={{ margin: 10 }} key={index}>
+                                                <CardRowLoading />
+                                            </div>
+                                        );
+                                    })}
+                                </>
                             </div>
                             :
                             <InfiniteScroll
+                                className={classes.gridContainerLoaderPromo}
                                 dataLength={promoItem.length}
                                 next={() => { fetchData(promoItem.length) }}
                                 hasMore={hasMore}
                                 loader={
-                                    <div className={classes.gridContainerLoaderPromo} >
-                                        <CardRowLoading />
-                                        <CardRowLoading />
-                                        <CardRowLoading />
-                                        <CardRowLoading />
-                                    </div>
+                                    <>
+                                        {[0, 0, 0, 0].map((i, index) => {
+                                            return (
+                                                <div style={{ margin: 10 }} key={index}>
+                                                    <CardRowLoading />
+                                                </div>
+                                            );
+                                        })}
+                                    </>
                                 }
                                 endMessage={
-                                    <div className={classes.gridEndMessage}>
-                                        <Grid item>
-                                            <p>There is no other available product</p>
-                                        </Grid>
-                                    </div>
+                                    <></>
                                 }
                             >
-                                <div className={classes.gridContainerLoaderPromo} >
+                                <>
                                     {promoItem.map((i, index) => {
                                         return (
                                             <div style={{ margin: 10 }} key={index}>
@@ -130,8 +135,9 @@ function PromoPageDiv() {
                                             </div>
                                         );
                                     })}
-                                </div>
+                                </>
                             </InfiniteScroll>
+
                         }
                     </div>
                 </Grid>
