@@ -3,7 +3,7 @@ import { Grid, } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PoininAppBar from '../components/Appbar';
-import { Promocard, PromocardLoading } from '../components/Promocard';
+import { Promocard, PromocardFixed, PromocardLoading } from '../components/Promocard';
 import { DummyPromoDataLong } from '../data/DummyList';
 import { PromoData } from '../data/PromoData';
 
@@ -126,7 +126,7 @@ function PromoPageDiv() {
                                     {promoItem.map((i, index) => {
                                         return (
                                             <div style={{ margin: 10 }} key={index}>
-                                                <Promocard promoData={i} />
+                                                <PromocardFixed promoData={i} />
                                             </div>
                                         );
                                     })}

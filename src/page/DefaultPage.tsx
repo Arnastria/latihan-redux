@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
-import { Promocard, PromocardLoading } from '../components/Promocard';
+import { Promocard, PromocardFixed, PromocardLoading } from '../components/Promocard';
 import { DummyPromoData } from '../data/DummyList';
 
 function DefaultPage() {
@@ -16,6 +16,13 @@ function DefaultPage() {
             <Grid item>
                 <PromocardLoading />
             </Grid>
+            <Grid item>
+                <PromocardFixed promoData={i[0]} />
+            </Grid>
+            <Grid item>
+                <PromocardFixed promoData={i[2]} />
+            </Grid>
+
 
         </Grid>
     );

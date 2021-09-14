@@ -1,4 +1,4 @@
-import { useStore } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import {
     Switch,
     Route,
@@ -10,6 +10,7 @@ import { PromoPage } from "../page/PromoPage";
 import { DefaultPage } from "../page/DefaultPage";
 import LoginPage from "../page/LoginPage";
 import { PromoPageDiv } from "../page/PromoPageDiv";
+import { Rootstate } from "../redux/reducers";
 
 
 
@@ -41,6 +42,28 @@ function AuthRoute(props: any) {
 }
 
 export function RouteSelector(props: any) {
+    //checknya disini untuk auth
+    const selector = useSelector((state: Rootstate) => state.auth);
+    // if (selector.tokens != null) {
+    //     return (
+    //         <Router>
+    //             <Switch>
+    //                 <Route path="/promo">
+    //                     <PromoPageDiv />
+    //                 </Route>
+    //                 <Route path="/">
+    //                     <DefaultPage />
+    //                 </Route>
+    //             </Switch>
+    //         </Router>
+    //     );
+    // } else {
+    //     return (
+    //         <Router>
+    //             <
+    //         </Router>
+    //     );
+    // }
     return (
         <Router>
             <Switch>
@@ -61,7 +84,6 @@ export function RouteSelector(props: any) {
                 </Route>
             </Switch>
         </Router>
-
     );
 }
 

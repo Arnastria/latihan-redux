@@ -7,9 +7,6 @@ export const loginUser = (credentials: any, dispatch: any) => {
     dispatch({
         type: 'LOGGED_IN'
     });
-    // store.dispatch({
-    //     type: 'LOGGED_IN',
-    // })
 }
 
 export const logoutUser = (dispatch: any) => {
@@ -17,7 +14,4 @@ export const logoutUser = (dispatch: any) => {
     dispatch({
         type: 'LOGGED_OUT'
     });
-    // store.dispatch({
-    //     type: 'LOGGED_OUT'
-    // })
 }
