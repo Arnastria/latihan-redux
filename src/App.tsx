@@ -2,6 +2,9 @@
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import './App.css';
+import JSRecorder from './JSRecorder';
+import Recorder from './recorder';
+import RecorderManual from './recorder/recorderManual';
 import { RouteSelector } from './routes';
 
 // function App() {
@@ -16,7 +19,8 @@ import { RouteSelector } from './routes';
 // }
 
 function App() {
-  return <RouteSelector />
+  return <JSRecorder />
+  // return <RouteSelector />
 }
 
 export default App;

@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { Persistor, reduxStore } from './redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import AudioRecorder from 'audio-recorder-polyfill'
+
 
 ReactDOM.render(
   <React.StrictMode>

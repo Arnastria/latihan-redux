@@ -90,8 +90,22 @@ function PromoPageDiv() {
             <div className={classes.borderAppBar}>
                 <PoininAppBar searchFunction={searchFunction} />
             </div>
-
-            <Grid container justifyContent="center" alignItems="center" spacing={2}>
+            <Grid container justifyContent='center' spacing={2} >
+                <Grid item>
+                    <div style={{ flexDirection: 'row-reverse', display: 'flex', width: '100vw', padding: '0% 25% 0% 25%' }} >
+                        <Grid container direction='row'>
+                            <p style={{ fontSize: 'larger', fontWeight: 700, color: '#000' }}>Promo Terbaik </p>
+                            <span style={{ fontSize: 'larger', fontWeight: 700, color: '#000' }} >Hari Ini </span>
+                        </Grid>
+                        <div style={{ width: '80px', paddingTop: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center', display: 'flex' }} >
+                            <div>
+                                <img style={{ width: '30px', margin: 'auto' }} src="https://www.poinin.com/assets/icon/hotpromo.png" alt="logo-trending" />
+                            </div>
+                        </div>
+                    </div>
+                </Grid>
+            </Grid>
+            <Grid container justifyContent="center" alignItems="center" spacing={2} style={{ backgroundColor: 'rgb(247, 247, 247)' }}>
                 <Grid item>
                     <div>
                         {isLoading ?
@@ -142,7 +156,7 @@ function PromoPageDiv() {
                     </div>
                 </Grid>
             </Grid>
-        </div>
+        </div >
     );
 }
 
